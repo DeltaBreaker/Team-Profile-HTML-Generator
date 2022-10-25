@@ -62,7 +62,6 @@ function generateWebpage(members) {
 
     // Creating cards based on bootstrap docs
     for(const m of members) {
-        console.log(m);
         literal +=
             `<div class="card shadow" style="width: 24rem;">
                 <div class="card-body bg-primary rounded">
