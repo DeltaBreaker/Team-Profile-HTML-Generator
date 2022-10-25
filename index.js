@@ -1,4 +1,5 @@
 let input = require("inquirer");
+let output = require("fs");
 
 let Manager = require("./lib/manager.js");
 let Intern = require("./lib/intern.js");
@@ -42,7 +43,59 @@ async function getMemberDetails(type) {
 }
 
 function generateWebpage(members) {
-    console.log(teamMembers);
+    let literal =
+    `<!DOCTYPE html>
+     <html lang="en">
+     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+        <title>Team Members</title>
+     </head>
+     <body>
+        <header class="bg-primary p-3 shadow mb-5">
+            <h1 class="text-center text-light">Our Team</h1>
+        </header>
+        <team class="d-flex justify-content-evenly">
+    `;
+
+        literal +=
+        `       </div>
+            </div>
+         </div>
+        `;
+    }
+
+    literal +=
+    `   </team>
+     </body>
+     </html>
+    `;
+
+    output.writeFile("team.html", literal, (error) => {
+        (error) ? console.error(error) : console.log("Output successul");
+    });
 }
 
-getUserInput();
+// getUserInput();
+generateWebpage([
+    new Manager.obj({
+        employeeName: "Misc",
+        employeeEmail: "willcrain1@gmail.com",
+        employeeID: "None",
+        employeeOffice: "69"
+    }),
+    new Engineer.obj({
+        employeeName: "Misc",
+        employeeEmail: "willcrain1@gmail.com",
+        employeeID: "None",
+        employeeUsername: "DeltaBreaker"
+    }),
+    new Intern.obj({
+        employeeName: "Misc",
+        employeeEmail: "willcrain1@gmail.com",
+        employeeID: "None",
+        employeeSchool: "Misc"
+    })
+]);
