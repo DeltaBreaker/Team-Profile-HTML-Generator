@@ -16,6 +16,16 @@ async function getUserInput() {
     generateWebpage(teamMembers);
 }
 
+async function getMemberDetails(type) {
+    let employeeType = eval(type);
+    let prompt = await input.prompt(employeeType.QUESTIONS).then(function(response) {
+        let classType = eval("employeeType." + type);
+        let value = new classType(response);
+        return value;
+    });
+    return prompt;
+}
+
 function generateWebpage(members) {
 
 }
