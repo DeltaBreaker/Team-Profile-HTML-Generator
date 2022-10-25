@@ -60,6 +60,36 @@ function generateWebpage(members) {
         <team class="d-flex justify-content-evenly">
     `;
 
+    // Creating cards based on bootstrap docs
+    for(const m of members) {
+        literal +=
+            `<div class="card shadow" style="width: 24rem;">
+                <div class="card-body bg-primary rounded">
+                    <h4 class="card-title text-light mb-3">${m.getName()}</h5>
+                    <div class="card-body bg-light rounded">
+                    <h5 class="card-subtitle mb-2 text-muted mb-3">${m.getRole()}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">ID: ${m.getID()}</h6>
+                    <a href="mailto:${m.getEmail()}" class="d-block">Email Me: ${m.getEmail()}</a>
+                    `;
+        
+        if(m instanceof Manager.obj) {
+            literal +=
+            `   <h6 class="card-subtitle mb-2 text-muted mt-2">Office: ${m.getOffice()}</h6>
+            `;
+        }
+
+        if(m instanceof Engineer.obj) {
+            literal +=
+            `   <a href="https://github.com/${m.getGithub()}" class="">Github: ${m.getGithub()}</a>
+            `;
+        }
+
+        if(m instanceof Intern.obj) {
+            literal +=
+            `   <h6 class="card-subtitle mb-2 text-muted mt-2">School: ${m.getSchool()}</h6>
+            `;
+        }
+
         literal +=
         `       </div>
             </div>
@@ -78,24 +108,4 @@ function generateWebpage(members) {
     });
 }
 
-// getUserInput();
-generateWebpage([
-    new Manager.obj({
-        employeeName: "Misc",
-        employeeEmail: "willcrain1@gmail.com",
-        employeeID: "None",
-        employeeOffice: "69"
-    }),
-    new Engineer.obj({
-        employeeName: "Misc",
-        employeeEmail: "willcrain1@gmail.com",
-        employeeID: "None",
-        employeeUsername: "DeltaBreaker"
-    }),
-    new Intern.obj({
-        employeeName: "Misc",
-        employeeEmail: "willcrain1@gmail.com",
-        employeeID: "None",
-        employeeSchool: "Misc"
-    })
-]);
+getUserInput();
