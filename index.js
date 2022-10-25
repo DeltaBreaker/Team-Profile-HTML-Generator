@@ -1,29 +1,13 @@
 let input = require("inquirer");
 
 let Manager = require("./lib/manager.js");
+let Intern = require("./lib/intern.js");
+let Engineer = require("./lib/engineer.js");
 
 async function getUserInput() {
     let teamMembers = [];
     
-    await input.prompt([
-        {
-            type: input,
-            message: "What is the manager's name?",
-            name: "managerName"
-        },
-        {
-            type: input,
-            message: "What is the manager's ID?",
-            name: "managerID"
-        },
-        {
-            type: input,
-            message: "What is the manager's email?",
-            name: "managerEmail"
-        }
-    ]).then(function(response) {
-        teamMembers.push(new Manager(response.managerName, response.managerID, response.managerEmail));
-    });
+    
 
     console.log(teamMembers);
 
@@ -35,5 +19,3 @@ async function getUserInput() {
 function generateWebpage(members) {
 
 }
-
-getUserInput();
